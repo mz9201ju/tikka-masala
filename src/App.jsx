@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import logo from "./assets/tikka-logo.jpg"; // ← put your logo file here
 import MENU from "./Menu"
 
@@ -50,33 +51,58 @@ function App() {
   return (
     <div className="tm-app">
       {/* NAVBAR */}
+      {/* NAVBAR */}
       <header className="tm-nav">
         <div className="tm-nav-inner">
+
+          {/* LEFT: LOGO */}
           <div className="tm-nav-left">
-            {/* ✅ LOGO NOW LINKS TO #home */}
-            <a href="#home" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+            <a
+              href="#home"
+              style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
+            >
               <img src={logo} alt="Tikka Masala logo" className="tm-logo" />
               <div>
                 <h1 className="tm-brand">Tikka Masala</h1>
                 <p className="tm-tagline">
                   Halal Pakistani Kitchen ·{" "}
-                  <span className="tm-tagline-urdu">
-                    حلال پاکستانی ذائقہ
-                  </span>
+                  <span className="tm-tagline-urdu">حلال پاکستانی ذائقہ</span>
                 </p>
               </div>
             </a>
           </div>
 
+          {/* CENTER: NAV LINKS */}
           <nav className="tm-nav-links">
             <a href="#home">Home</a>
             <a href="#services">Services</a>
             <a href="#menu">Menu</a>
             <a href="#contact">Contact</a>
           </nav>
+
+          {/* RIGHT: SOCIAL ICONS */}
+          <div className="tm-nav-socials">
+            <a
+              href="https://www.instagram.com/tikkamasalabellevue"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+
+            <a
+              href="https://www.facebook.com/tikkamasalabellevue"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <FaFacebookF />
+            </a>
+          </div>
+
         </div>
       </header>
-
 
       {/* HERO / HOME */}
       <section id="home" className="tm-hero">

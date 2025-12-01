@@ -721,3 +721,21 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.tm-nav-socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1.2rem;
+}
+
+.tm-nav-socials a {
+  color: #d4af37;
+  /* gold vibe */
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.tm-nav-socials a:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
