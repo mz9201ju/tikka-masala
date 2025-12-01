@@ -51,7 +51,6 @@ function App() {
   return (
     <div className="tm-app">
       {/* NAVBAR */}
-      {/* NAVBAR */}
       <header className="tm-nav">
         <div className="tm-nav-inner">
 
