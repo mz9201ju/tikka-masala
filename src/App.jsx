@@ -264,7 +264,13 @@ const MENU = [
 function App() {
   const [cart, setCart] = useState([]);
   const [showContactBanner, setShowContactBanner] = useState(false);
+  const cartRef = useState(null);
 
+  // ✅ helper to show count on menu button
+  const getItemQty = (id) => {
+    const item = cart.find((i) => i.id === id);
+    return item ? item.qty : 0;
+  };
 
   const addToCart = (item) => {
     setCart((prev) => {
@@ -513,7 +519,9 @@ function App() {
                             className="tm-btn tm-btn-sm"
                             onClick={() => addToCart(item)}
                           >
-                            Add to Cart
+                            {getItemQty(item.id) > 0
+                              ? `Add (${getItemQty(item.id)})`
+                              : "Add to Cart"}
                           </button>
                         </div>
                       </div>
@@ -525,7 +533,7 @@ function App() {
           </div>
 
           {/* CART */}
-          <aside className="tm-cart">
+          <aside ref={cartRef} className="tm-cart">
             <h3>Your Cart</h3>
             {cart.length === 0 ? (
               <p className="tm-cart-empty">
@@ -601,6 +609,27 @@ function App() {
             )}
           </aside>
         </div>
+        {cart.length > 0 && (
+          <button
+            onClick={() => cartRef.current?.scrollIntoView({ behavior: "smooth" })}
+            style={{
+              position: "fixed",
+              left: "16px",
+              bottom: "20px",
+              zIndex: 9999,
+              background: "#000",
+              color: "#d4af37",
+              padding: "14px 18px",
+              borderRadius: "999px",
+              fontWeight: "800",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+              border: "2px solid #d4af37",
+              cursor: "pointer",
+            }}
+          >
+            🛒 {cart.reduce((s, i) => s + i.qty, 0)} • Checkout
+          </button>
+        )}
       </section>
 
       {/* CONTACT / FOOTER */}
