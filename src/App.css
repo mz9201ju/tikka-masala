@@ -90,7 +90,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .tm-nav-links a {
@@ -681,7 +681,7 @@ body {
   .tm-nav-links {
     width: 100%;
     justify-content: space-between;
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .tm-hero-title {
