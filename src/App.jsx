@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import logo from "./assets/tikka-logo.jpg"; // ← put your logo file here
+import bg1 from "./assets/background1.jpg";
 import MENU from "./Menu"
 
 
@@ -9,7 +10,7 @@ import MENU from "./Menu"
 function App() {
   const [cart, setCart] = useState([]);
   const [showContactBanner, setShowContactBanner] = useState(false);
-  const cartRef = useState(null);
+  const cartRef = useRef(null);
 
   // ✅ helper to show count on menu button
   const getItemQty = (id) => {
@@ -178,8 +179,16 @@ function App() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="tm-section tm-section-pattern">
-        <div className="tm-section-header">
+      <section
+        id="services"
+        className="tm-section tm-section-pattern"
+        style={{
+          backgroundImage: `url(${bg1})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "round",
+        }}
+      >
+        <div className="tm-section-header tm-section-header-bg">
           <h2>Services</h2>
           <p>Halal food for every moment – from quick lunch to full shaadi menu.</p>
         </div>
@@ -380,7 +389,16 @@ function App() {
         </div>
         {cart.length > 0 && (
           <button
-            onClick={() => cartRef.current?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => {
+              const section = document.getElementById("menu");
+              if (!section) return;
+
+              const yOffset = -90; // ✅ accounts for fixed navbar
+              const y =
+                section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+              window.scrollTo({ top: y, behavior: "smooth" });
+            }}
             style={{
               position: "fixed",
               left: "16px",
@@ -396,7 +414,7 @@ function App() {
               cursor: "pointer",
             }}
           >
-            🛒 {cart.reduce((s, i) => s + i.qty, 0)} • Checkout
+            🛒 {cart.reduce((s, i) => s + i.qty, 0)} • View Menu
           </button>
         )}
       </section>

@@ -746,3 +746,31 @@ body {
 #contact {
   scroll-margin-top: 130px;
 }
+
+.tm-section-header-bg {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 28px 32px;
+
+  background: rgba(0, 0, 0, 0.65);
+  /* ✅ readability fix */
+  backdrop-filter: blur(6px);
+  /* ✅ premium glass effect */
+
+  border-radius: 18px;
+  text-align: center;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.tm-section-header-bg h2 {
+  color: #fff;
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+}
+
+.tm-section-header-bg p {
+  color: #f1f1f1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
