@@ -1,9 +1,8 @@
-name: 🚀 Deploy Vite React to GitHub Pages (No Cache)
+name: 🚀 Deploy Tikka Masala to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -20,21 +19,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout Repo
+      - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 🔧 Setup Node
+      - name: 🧰 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: 📦 Install Dependencies (NO CACHE)
-        run: npm install
+      - name: 📦 Install Dependencies
+        run: npm ci
 
-      - name: 🏗️ Build Vite App
+      - name: 🏗️ Build Project
         run: npm run build
 
-      - name: 📤 Upload Build Artifact
+      # ✅ SPA fallback for Browser Routing safety
+      - name: 🪄 Create SPA 404 Fallback
+        run: cp dist/index.html dist/404.html
+
+      # ✅ FORCE NO-CACHE ON ALL FILES
+      - name: 🔥 Add No-Cache Headers (force fresh builds)
+        run: |
+          echo "/*" > dist/_headers
+          echo "  Cache-Control: no-cache, no-store, must-revalidate" >> dist/_headers
+          echo "  Pragma: no-cache" >> dist/_headers
+          echo "  Expires: 0" >> dist/_headers
+
+      - name: 📤 Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -44,6 +56,20 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - name: 🚀 Deploy
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
+
+      # ✅ PRINT DEPLOYED ENDPOINT IN LOGS
+      - name: ✅ Show Live Deployment URL
+        run: |
+          echo "==========================================="
+          echo "✅ DEPLOYMENT COMPLETE!"
+          echo "🌍 LIVE SITE URL:"
+          echo "${{ steps.deployment.outputs.page_url }}"
+          echo "==========================================="
