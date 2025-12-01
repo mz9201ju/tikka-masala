@@ -611,8 +611,16 @@ function App() {
             <h3>Visit Tikka Masala</h3>
 
             <p>
-              1624 145th PL SE<br />
-              Bellevue, WA 98007
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=1624+145th+Pl+SE+Bellevue+WA+98007"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                1624 145th PL SE
+                <br />
+                Bellevue, WA 98007
+              </a>
             </p>
 
             {/* ✅ LIVE GOOGLE MAP */}
