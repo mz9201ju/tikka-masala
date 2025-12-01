@@ -584,18 +584,15 @@ function App() {
                   </button>
 
                   <div className="tm-cart-partners">
-                    <p className="tm-cart-partners-label">
-                      Soon you&apos;ll be able to complete this order via:
-                    </p>
                     <div className="tm-delivery-buttons vertical">
-                      <a href="#!" className="tm-delivery-btn uber">
+                      <a href="https://www.ubereats.com/store/tikka-masala/HL0YuQONTPaJQqFc9Ueiyw?undefined=open-modal&msockid=16497b4a29ef6b921e136dd028c26ae8" className="tm-delivery-btn uber">
                         UberEats
                       </a>
-                      <a href="#!" className="tm-delivery-btn doordash">
+                      <a href="https://www.doordash.com/store/tikkamasala-bellevue-2474911/2494193/?msockid=16497b4a29ef6b921e136dd028c26ae8" className="tm-delivery-btn doordash">
                         DoorDash
                       </a>
                       <a href="#!" className="tm-delivery-btn grubhub">
-                        Grubhub
+                        Grubhub (coming soon)
                       </a>
                     </div>
                   </div>
